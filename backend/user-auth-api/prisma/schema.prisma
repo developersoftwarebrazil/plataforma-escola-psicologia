@@ -12,9 +12,65 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
-model User{
-  Id Int @id @default(autoincrement())
-  name String
-  email String @unique
-  password String
+model User {
+  id            Int       @id @default(autoincrement())
+  name          String
+  email         String    @unique
+  password_hash String
+  role          UserRole  @default(ALUNO)
+  status        UserStatus @default(ATIVO)
+  payment_status PaymentStatus @default(PENDENTE)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  enrollments   Enrollment[]
+
+  // Relacionamento de um para muitos com a tabela Course
+  createdCourses Course[]  // Adicionando a relação oposta
 }
+
+model Course {
+  id          Int       @id @default(autoincrement())
+  title       String
+  description String?
+  createdBy   User?     @relation(fields: [createdById], references: [id])
+  createdById Int?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  enrollments Enrollment[]
+}
+
+model Enrollment {
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  courseId  Int
+  status    EnrollmentStatus @default(ATIVO)
+  grade     Float?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user      User     @relation(fields: [userId], references: [id])
+  course    Course   @relation(fields: [courseId], references: [id])
+}
+
+enum UserRole {
+  ADMIN
+  ALUNO
+  PROFESSOR
+}
+
+enum UserStatus {
+  ATIVO
+  INATIVO
+}
+
+enum PaymentStatus {
+  PENDENTE
+  PAGO
+  EM_ATRASO
+}
+
+enum EnrollmentStatus {
+  ATIVO
+  INATIVO
+}
+
