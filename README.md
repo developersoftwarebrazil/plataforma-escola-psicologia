@@ -1,20 +1,17 @@
-# ﻿Plataforma Escola de Psicologia
-
+# 🏫﻿Plataforma Escola de Psicologia
 ## Descrição
 
 Este projeto implementa uma plataforma para gerenciamento de cursos online para psicologia. Ele segue a arquitetura DDD (Domain-Driven Design) e utiliza NestJS, Prisma ORM e PostgreSQL.
 
-Tecnologias Utilizadas
+## 🚀 Tecnologias Utilizadas  
 
-NestJS (Framework Backend)
+### **📌 Backend** 
+- **NestJS (Framework Backend).**
+-  **PostgreSQL (Banco de Dados).**
+-  **Prisma ORM (Gerenciamento de BD).**
+-  **TypeScript (Linguagem de Programação).
 
-PostgreSQL (Banco de Dados)
-
-Prisma ORM (Gerenciamento de BD)
-
-TypeScript (Linguagem de Programação)
-
-Estrutura do Projeto
+## 📂 Estrutura do Projeto  
 ```bash
 📦 src
  ┣ 📂 application              # 📌 Camada de Application (casos de uso)
@@ -77,24 +74,30 @@ Estrutura do Projeto
  ┃ ┃ ┣ 📜 notifications.gateway.ts
  ┃ ┃ ┗ 📜 chat.gateway.ts
  ┗ 📜 main.ts                  # Arquivo principal do NestJS
-
-
 ```
 
-Instalação
+# Instalação
 
+## 🚀 Como Rodar o Projeto 
+
+### **1️⃣ Clonar o repositório**
+```bash
 Clone o repositório:
 
 git clone https://github.com/seu-usuario/plataforma-escola-psicologia.git
+```
 
-Acesse a pasta do projeto:
-
+### **1️⃣ Configurar o backend**
+```bash
 cd plataforma-escola-psicologia/backend
-
-Instale as dependências:
-
+cp .env.example .env
 npm install
+npx prisma migrate dev
+npm run start:dev
+```
 
+### **1️⃣ Configurar o backend**
+```bash
 Configure o banco de dados no arquivo .env:
 
 DATABASE_URL="postgresql://usuario:senha@localhost:5432/nome_do_banco"
@@ -103,11 +106,12 @@ Execute as migrations:
 
 npx prisma migrate dev --name init
 
+
 Inicie o servidor:
 
 npm run start:dev
-
-Endpoints Disponíveis
+```
+## Endpoints Disponíveis
 
 Criar Curso: POST /courses
 
