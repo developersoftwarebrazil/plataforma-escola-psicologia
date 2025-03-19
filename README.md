@@ -6,10 +6,25 @@ Este projeto implementa uma plataforma para gerenciamento de cursos online para 
 ## 🚀 Tecnologias Utilizadas  
 
 ### **📌 Backend** 
-- **NestJS (Framework Backend).**
--  **PostgreSQL (Banco de Dados).**
--  **Prisma ORM (Gerenciamento de BD).**
--  **TypeScript (Linguagem de Programação).
+- **🟢 NestJS: Framework para desenvolvimento de back-end, utilizado para construir APIs RESTful.**
+- **🔵 Next.js: Framework React para desenvolvimento do front-end.**
+-  **🗄️ PostgreSQL: Sistema de gerenciamento de banco de dados relacional.**
+-  **🎲 Prisma: ORM para facilitar a integração entre a aplicação e o banco de dados PostgreSQL.**
+-  **🐳 Docker: Utilizado para criar um ambiente isolado para o banco de dados PostgreSQL.**
+-  **🔑 JWT: Sistema de autenticação baseado em tokens JSON Web Token.**
+
+## **📌 Funcionalidades**
+
+### **👥 Usuários**
+
+- **Cadastro de Alunos: Alunos podem se cadastrar na plataforma e acessar os cursos disponíveis.**
+- **Cadastro de Professores: Professores podem criar e gerenciar cursos.**
+- **Administração de Alunos: Administradores podem bloquear ou liberar alunos, bem como definir o status do aluno como ativo ou inativo.**
+
+### **📚 Cursos**
+
+- **Criação de Cursos: Professores podem criar cursos, adicionar módulos, lições e materiais de ensino.**
+- **Gerenciamento de Cursos: Cursos podem ser associados aos alunos e os professores podem modificar o conteúdo dos cursos.**
 
 ## 📂 Estrutura do Projeto  
 ```bash
@@ -86,6 +101,10 @@ Clone o repositório:
 
 git clone https://github.com/seu-usuario/plataforma-escola-psicologia.git
 ```
+### **2️⃣ Instalar Dependências**
+```bash
+npm install
+```
 
 ### **1️⃣ Configurar o backend**
 ```bash
@@ -96,43 +115,70 @@ npx prisma migrate dev
 npm run start:dev
 ```
 
-### **1️⃣ Configurar o backend**
+## **6️⃣ Gerar o Prisma Client**
+
+Após aplicar as migrações, gere o Prisma Client com o comando:
 ```bash
-Configure o banco de dados no arquivo .env:
+npx prisma generate
+```
 
+
+Na raiz do projeto, crie o arquivo .env com a variável de conexão ao banco de dados. Exemplo de conteúdo para o arquivo:
+```bash
 DATABASE_URL="postgresql://usuario:senha@localhost:5432/nome_do_banco"
-
+```
 Execute as migrations:
-
+```bash
 npx prisma migrate dev --name init
+```
 
+## **7️⃣ Rodar a API**
 
-Inicie o servidor:
-
+Agora, você pode rodar a API em modo de desenvolvimento:
+```bash
 npm run start:dev
 ```
-## Endpoints Disponíveis
 
-Criar Curso: POST /courses
+A aplicação estará disponível em http://localhost:3000.
 
-Buscar Curso por ID: GET /courses/:id
+## **8️⃣ Acessar a API**
 
-Contribuição
+Você pode utilizar ferramentas como Postman ou Insomnia para testar os endpoints da API.
 
-Contribuições são bem-vindas! Para contribuir:
+## **📌 Endpoints Disponíveis**
 
-Crie um fork do repositório
+### **🔐 Autenticação**
 
-Crie uma branch (git checkout -b minha-feature)
+- ""POST /auth/login: Realiza o login e gera o token JWT para o usuário.""
+- **POST /auth/register: Registra um novo usuário no sistema.*
 
-Commit suas mudanças (git commit -m 'Adicionando nova feature')
+## **👥 Usuários**
 
-Envie um push (git push origin minha-feature)
+- **GET /users: Retorna todos os usuários (professores e alunos).**
+- **GET /users/:id: Retorna os dados de um usuário específico.**
+- **PATCH /users/:id/activate: Ativa um usuário.**
+- **PATCH /users/:id/deactivate: Desativa um usuário.**
+- **PATCH /users/:id/block: Bloqueia um usuário.**
+- **PATCH /users/:id/unblock: Desbloqueia um usuário.**
 
-Abra um Pull Request
+## **📚 Cursos**
 
-Licença
+- **GET /courses: Retorna todos os cursos disponíveis.**
+- **GET /courses/:id: Retorna os detalhes de um curso específico.**
+- **POST /courses: Cria um novo curso.**
+- **PATCH /courses/:id: Atualiza os dados de um curso.**
+- **DELETE /courses/:id: Deleta um curso.**
 
-Este projeto está sob a licença MIT.
+## **🤝 Contribuindo**
+1. Faça um fork deste repositório.
+2. Crie uma branch para a sua feature (git checkout -b minha-feature).
+3. Faça as alterações e commit (git commit -am 'Adiciona nova feature').
+4. Faça o push para a branch (git push origin minha-feature).
+5. Abra um Pull Request para o repositório original.
+
+
+## **📜 Licença**  
+Este projeto está licenciado sob a [MIT License](LICENSE). 📄  
+
 
 
